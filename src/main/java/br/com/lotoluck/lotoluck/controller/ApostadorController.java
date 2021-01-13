@@ -1,7 +1,7 @@
 package br.com.lotoluck.lotoluck.controller;
 
 import br.com.lotoluck.lotoluck.controller.DTO.ApostadorDTO;
-import br.com.lotoluck.lotoluck.model.Aposta;
+import br.com.lotoluck.lotoluck.controller.form.ApostadorForm;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import br.com.lotoluck.lotoluck.repository.ApostadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/apostas")
-public class ApostasController {
+public class ApostadorController {
 
     @Autowired
     ApostadorRepository repository;

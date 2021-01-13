@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErroDeValidacao {
-
-    @Autowired
-    private MessageSource msgSource;
+public class ErroDeValidacaoHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     public List<ErroDeFormulario> handle(ConstraintViolationException ex) {
         List<ErroDeFormulario> fieldErro = new ArrayList<>();
         ex.getConstraintViolations().forEach(e -> {
+            if(e.getMessage() == null){
+                fieldErro.add(new ErroDeFormulario(e.getPropertyPath().toString(), "Email Inválido"));
+            }
             fieldErro.add(new ErroDeFormulario(e.getPropertyPath().toString(), e.getMessage()));
         });
 

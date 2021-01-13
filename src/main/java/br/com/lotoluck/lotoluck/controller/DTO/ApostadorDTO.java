@@ -3,6 +3,8 @@ package br.com.lotoluck.lotoluck.controller.DTO;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+
 
 @Data
 public class ApostadorDTO {
@@ -16,7 +18,7 @@ public class ApostadorDTO {
         this.nome = apostador.getNome();
     }
 
-    public static ApostadorDTO converter(Apostador apostador){
+    public static ApostadorDTO converterApostador(Apostador apostador){
         return new ApostadorDTO(apostador);
     }
 }

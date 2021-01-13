@@ -1,16 +1,13 @@
 package br.com.lotoluck.lotoluck.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
-
+import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "apostador")
 public class Apostador {
@@ -19,22 +16,22 @@ public class Apostador {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
-    @NotBlank(message = "{email.not.blank}")
-    @Email(message = "{email.not.valid}")
-    @Length(max = 150)
+    @Email
+    @Size(max = 150)
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "{name.not.blank}")
+    @NotBlank(message = "{nome.not.blank}")
     private String nome;
 
     @NotBlank(message = "{cpf.not.blank}")
+    @CPF
     private String cpf;
 
     @AssertFalse
     private Boolean validado;
 
-    public Apostador(String nome, String email, String cpf) {
+    public Apostador(String email, String nome, String cpf) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;

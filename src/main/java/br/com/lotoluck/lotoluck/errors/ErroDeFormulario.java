@@ -1,11 +1,30 @@
 package br.com.lotoluck.lotoluck.errors;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class ErroDeFormulario {
     private String campo;
-    private String erro;
+    private String msg;
+
+    public ErroDeFormulario(String campo, String msg){
+        this.msg = msg;
+        this.campo = campo;
+    }
+
+    public ErroDeFormulario(){
+    }
+
+    public String getCampo() {
+        return campo;
+    }
+
+    public void setCampo(String campo) {
+        this.campo = campo;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }

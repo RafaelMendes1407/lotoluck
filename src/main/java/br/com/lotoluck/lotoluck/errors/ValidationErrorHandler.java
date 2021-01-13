@@ -29,6 +29,7 @@ public class ValidationErrorHandler {
             ErroDeFormulario erro = new ErroDeFormulario(e.getField(), msg);
             erroDto.add(erro);
         });
+
         return erroDto;
     }
 
