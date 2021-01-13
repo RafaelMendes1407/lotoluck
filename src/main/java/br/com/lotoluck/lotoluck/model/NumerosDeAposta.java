@@ -1,7 +1,6 @@
 package br.com.lotoluck.lotoluck.model;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.Random;
 
 @Data
 public class NumerosDeAposta {
+
     List<Integer> numerosdeAposta = new ArrayList<>();
 
 
@@ -20,11 +20,12 @@ public class NumerosDeAposta {
         return true;
     }
 
-    public void gerarAposta(int numerosDisponiveis, int numerosApostados) {
+    public void gerarAposta(int numerosDisponiveisParaAposta, int numerosApostados) {
         Random random = new Random();
-        int numero = 0;
-        for (int i = 0; i < numerosApostados; i++) {
-            numero = random.nextInt(numerosDisponiveis);
+        int numero;
+
+        while (this.numerosdeAposta.size() < numerosApostados) {
+            numero = random.nextInt(numerosDisponiveisParaAposta);
             add(numero);
         }
     }
@@ -38,6 +39,12 @@ public class NumerosDeAposta {
             return this.numerosdeAposta.contains(i);
         }
         return false;
+    }
+
+    public String numerosApostados() {
+        this.numerosdeAposta.sort(Integer::compareTo);
+
+        return this.numerosdeAposta.toString();
     }
 }
 

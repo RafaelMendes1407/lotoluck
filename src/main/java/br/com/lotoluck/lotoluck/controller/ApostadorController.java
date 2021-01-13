@@ -7,15 +7,12 @@ import br.com.lotoluck.lotoluck.repository.ApostadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/apostas")
+@RequestMapping("/apostador")
 public class ApostadorController {
 
     @Autowired
@@ -27,5 +24,10 @@ public class ApostadorController {
         Apostador apostador = form.converter();
         repository.save(apostador);
         return new ResponseEntity<>(new ApostadorDTO(apostador), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApostadorDTO> obterApostas(@PathVariable Long id){
+
     }
 }

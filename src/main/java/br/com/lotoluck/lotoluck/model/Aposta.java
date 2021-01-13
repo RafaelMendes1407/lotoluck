@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
@@ -24,7 +25,8 @@ public class Aposta {
     @JoinColumn(name="apostador_id", referencedColumnName="id", nullable=false)
     private Apostador apostador;
 
-    private NumerosDeAposta numeros;
+    @NotBlank
+    private String numerosApostados;
 
 
 }

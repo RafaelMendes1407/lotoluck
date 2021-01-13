@@ -29,5 +29,23 @@ public class NumerosTest {
         assertEquals(1, num.qtdnumApostados());
     }
 
+    @Test
+    public void deveGerarQuantidadeDeNumerosSemRepeticao(){
+        NumerosDeAposta num = new NumerosDeAposta();
+        num.gerarAposta(10, 6);
+        assertEquals(6, num.qtdnumApostados());
+    }
 
+    @Test
+    public void deveRetornarOsNumerosSorteadosEmOrdemCrescente(){
+        NumerosDeAposta num = new NumerosDeAposta();
+        num.add(14);
+        num.add(58);
+        num.add(33);
+        num.add(23);
+        num.add(6);
+        num.add(11);
+        assertEquals("[6, 11, 14, 23, 33, 58]", num.numerosApostados());
+
+    }
 }

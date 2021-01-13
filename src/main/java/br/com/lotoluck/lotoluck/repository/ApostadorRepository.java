@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ApostadorRepository extends JpaRepository<Apostador, Long> {
+    Apostador findByEmail(String email);
 }

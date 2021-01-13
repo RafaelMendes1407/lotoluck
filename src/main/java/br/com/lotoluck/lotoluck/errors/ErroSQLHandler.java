@@ -13,11 +13,8 @@ import java.util.List;
 public class ErroSQLHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {SQLIntegrityConstraintViolationException.class, IllegalStateException.class })
-    public List<ErroDeFormulario> handle(Exception ex) {
-        List<ErroDeFormulario> fieldErro = new ArrayList<>();
-        System.out.println(ex.getMessage());
-        ErroDeFormulario erro = new ErroDeFormulario("Email", "Email já cadastrado");
-        fieldErro.add(erro);
-        return fieldErro;
+    public ErroDeFormulario handle(Exception ex) {
+        String fieldErro = ex.getMessage();
+        return new ErroDeFormulario("Email", fieldErro);
     }
 }
