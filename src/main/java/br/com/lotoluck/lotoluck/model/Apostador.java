@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -30,6 +31,9 @@ public class Apostador {
 
     @AssertFalse
     private Boolean validado;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "apostador")
+    private List<Aposta> apostas;
 
     public Apostador(String email, String nome, String cpf) {
         this.nome = nome;

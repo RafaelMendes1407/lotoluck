@@ -20,7 +20,11 @@ public class Aposta {
 
     private LocalDateTime date = LocalDateTime.now();
 
-    //private Numero numeros;
+    @ManyToOne
+    @JoinColumn(name="apostador_id", referencedColumnName="id", nullable=false)
+    private Apostador apostador;
+
+    private NumerosDeAposta numeros;
 
 
 }
