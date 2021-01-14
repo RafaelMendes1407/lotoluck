@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/apostas")
@@ -26,11 +27,16 @@ public class ApostaController {
 
     @PostMapping
     public ResponseEntity<ApostaDTO> novaAposta(@RequestBody @Valid ApostaForm email) {
-        Apostador apostador = apostadorRepo.findByEmail(email.getEmail());
+        Optional<Apostador> apostador = apostadorRepo.findByEmail(email.getEmail());
+
+        if (apostador.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         NumerosDeAposta nums = new NumerosDeAposta();
-        nums.gerarAposta(60,6);
+        nums.gerarAposta(60, 6);
         Aposta aposta = new Aposta();
-        aposta.setApostador(apostador);
+        aposta.setApostador(apostador.get());
         aposta.setNumerosApostados(nums.numerosApostados());
         apostaRepo.save(aposta);
         return new ResponseEntity<ApostaDTO>(ApostaDTO.converterAposta(aposta), HttpStatus.CREATED);

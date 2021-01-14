@@ -1,6 +1,5 @@
 package br.com.lotoluck.lotoluck.controller.DTO;
 
-import br.com.lotoluck.lotoluck.model.Aposta;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import lombok.AllArgsConstructor;
 import lombok.Data;

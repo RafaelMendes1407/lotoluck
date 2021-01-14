@@ -2,6 +2,7 @@ package br.com.lotoluck.lotoluck.controller;
 
 import br.com.lotoluck.lotoluck.controller.DTO.ApostadorApostaDTO;
 import br.com.lotoluck.lotoluck.controller.DTO.ApostadorDTO;
+import br.com.lotoluck.lotoluck.controller.form.ApostaForm;
 import br.com.lotoluck.lotoluck.controller.form.ApostadorForm;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import br.com.lotoluck.lotoluck.repository.ApostadorRepository;
@@ -31,6 +32,14 @@ public class ApostadorController {
     @GetMapping("/{id}")
     public ResponseEntity<ApostadorApostaDTO> obterApostas(@PathVariable Long id){
         Optional<Apostador> apostador = repository.findById(id);
-        return apostador.map(value -> ResponseEntity.ok(ApostadorApostaDTO.converter(value))).orElseGet(() -> ResponseEntity.notFound().build());
+        return apostador.map(e -> ResponseEntity.ok(ApostadorApostaDTO.converter(e))).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping
+    public ResponseEntity<ApostadorApostaDTO> obterApostasEmail(@RequestBody @Valid ApostaForm form){
+        Optional<Apostador> apostador = repository.findByEmail(form.getEmail());
+        return apostador.map(e -> ResponseEntity.ok(ApostadorApostaDTO.converter(e))).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
 }
