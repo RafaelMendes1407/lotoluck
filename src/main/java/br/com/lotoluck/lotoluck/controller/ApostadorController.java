@@ -1,5 +1,6 @@
 package br.com.lotoluck.lotoluck.controller;
 
+import br.com.lotoluck.lotoluck.controller.DTO.ApostadorApostaDTO;
 import br.com.lotoluck.lotoluck.controller.DTO.ApostadorDTO;
 import br.com.lotoluck.lotoluck.controller.form.ApostadorForm;
 import br.com.lotoluck.lotoluck.model.Apostador;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/apostador")
@@ -27,7 +29,8 @@ public class ApostadorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApostadorDTO> obterApostas(@PathVariable Long id){
-
+    public ResponseEntity<ApostadorApostaDTO> obterApostas(@PathVariable Long id){
+        Optional<Apostador> apostador = repository.findById(id);
+        return apostador.map(value -> ResponseEntity.ok(ApostadorApostaDTO.converter(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

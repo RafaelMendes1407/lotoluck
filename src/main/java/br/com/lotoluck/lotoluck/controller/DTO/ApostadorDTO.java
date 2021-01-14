@@ -1,9 +1,11 @@
 package br.com.lotoluck.lotoluck.controller.DTO;
 
+import br.com.lotoluck.lotoluck.model.Aposta;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
+import java.util.List;
 
 
 @Data
