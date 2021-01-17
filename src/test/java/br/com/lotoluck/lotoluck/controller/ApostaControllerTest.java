@@ -40,8 +40,7 @@ public class ApostaControllerTest {
     public void criaUmApostador() {
         apostadorRepository.save(apostador);
     }
-
-    private String porta = "8080";
+    private String port = "8080";
 
     @Test
     public void deveCriarUmanovaAposta() {
@@ -62,11 +61,20 @@ public class ApostaControllerTest {
                 .and().log().body()
                 .and()
                 .statusCode(HttpStatus.CREATED.value())
-                .headers("Location", equalTo("http://localhost:"+porta+"/apostas/1"))
+                .headers("Location", equalTo("http://localhost:"+port+"/apostas/1"))
                 .body("codigo", equalTo(6));
 
 
     }
 
+    @Test
+    public void naoDevePermitirDuasApostasIdenticasParaoMesmoApostador() {
+        String numsPrimeiraAposta = "[4, 21, 45, 48, 50, 56]";
+        String numsSegundaAposta = "[4, 21, 45, 48, 50, 56]";
+        Aposta primeiraAposta = new Aposta(apostador, numsPrimeiraAposta);
+        Aposta segundaAposta = new Aposta(apostador, numsSegundaAposta);
 
+        Assertions.assertThat(primeiraAposta.getNumerosApostados()).isNotEqualTo(segundaAposta.getNumerosApostados());
+
+    }
 }

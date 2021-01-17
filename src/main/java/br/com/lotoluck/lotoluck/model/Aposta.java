@@ -42,4 +42,14 @@ public class Aposta {
         this.date = LocalDateTime.now();
         this.apostador = apostador;
     }
+
+    public boolean apostaNaoEhPossivel(ApostaRepository repo){
+        Optional<Aposta> aposta = repo.findByNumerosApostados(this.getNumerosApostados());
+        if(aposta.isEmpty()){
+            return false;
+        }
+        Long idApostador = this.apostador.getId();
+        Long idAposta = aposta.get().getApostador().getId();
+        return idApostador.equals(idAposta);
+    }
 }
