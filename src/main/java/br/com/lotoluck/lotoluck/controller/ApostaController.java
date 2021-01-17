@@ -4,7 +4,7 @@ import br.com.lotoluck.lotoluck.controller.DTO.ApostaDTO;
 import br.com.lotoluck.lotoluck.controller.form.ApostaForm;
 import br.com.lotoluck.lotoluck.model.Aposta;
 import br.com.lotoluck.lotoluck.model.Apostador;
-import br.com.lotoluck.lotoluck.model.NumerosDeAposta;
+import br.com.lotoluck.lotoluck.services.NumerosDeAposta;
 import br.com.lotoluck.lotoluck.repository.ApostaRepository;
 import br.com.lotoluck.lotoluck.repository.ApostadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,10 @@ public class ApostaController {
         if (apostador.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
-        NumerosDeAposta nums = new NumerosDeAposta();
-        nums.gerarAposta(60, 6);
+        String nums = NumerosDeAposta.apostar(60, 6);
         Aposta aposta = new Aposta();
         aposta.setApostador(apostador.get());
-        aposta.setNumerosApostados(nums.numerosApostados());
+        aposta.setNumerosApostados(nums);
         apostaRepo.save(aposta);
         return new ResponseEntity<ApostaDTO>(ApostaDTO.converterAposta(aposta), HttpStatus.CREATED);
     }

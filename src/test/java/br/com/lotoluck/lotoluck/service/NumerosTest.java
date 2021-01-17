@@ -1,13 +1,16 @@
-package br.com.lotoluck.lotoluck;
+package br.com.lotoluck.lotoluck.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import br.com.lotoluck.lotoluck.model.NumerosDeAposta;
+import br.com.lotoluck.lotoluck.services.NumerosDeAposta;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class NumerosTest {
 
     @Test
+    @DisplayName("╯°□°）╯")
     public void DeveGerarListaDeNumerosParaAposta() {
         NumerosDeAposta numeros = new NumerosDeAposta();
         numeros.gerarAposta(60, 6);
@@ -47,5 +50,12 @@ public class NumerosTest {
         num.add(11);
         assertEquals("[6, 11, 14, 23, 33, 58]", num.numerosApostados());
 
+    }
+
+    @Test
+    @DisplayName("╯°□°）╯")
+    public void deveGerarApostaPeloMetodoEstatico(){
+        String num = NumerosDeAposta.apostar(6,3);
+        assertTrue(num.length() > 6);
     }
 }

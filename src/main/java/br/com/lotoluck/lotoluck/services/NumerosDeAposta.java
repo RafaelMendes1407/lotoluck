@@ -1,4 +1,4 @@
-package br.com.lotoluck.lotoluck.model;
+package br.com.lotoluck.lotoluck.services;
 
 import lombok.Data;
 
@@ -11,6 +11,12 @@ public class NumerosDeAposta {
 
     List<Integer> numerosdeAposta = new ArrayList<>();
 
+    public static String apostar(int numerosDisponiveisParaAposta, int numerosApostados){
+        NumerosDeAposta nums = new NumerosDeAposta();
+        nums.gerarAposta(numerosDisponiveisParaAposta, numerosApostados);
+        return nums.numerosApostados();
+    }
+
 
     public boolean add(int i) {
         if (i == 0 || numerosDuplicados(i)) {
@@ -22,10 +28,9 @@ public class NumerosDeAposta {
 
     public void gerarAposta(int numerosDisponiveisParaAposta, int numerosApostados) {
         Random random = new Random();
-        int numero;
 
         while (this.numerosdeAposta.size() < numerosApostados) {
-            numero = random.nextInt(numerosDisponiveisParaAposta);
+            int numero = random.nextInt(numerosDisponiveisParaAposta);
             add(numero);
         }
     }
@@ -47,5 +52,3 @@ public class NumerosDeAposta {
         return this.numerosdeAposta.toString();
     }
 }
-
-
