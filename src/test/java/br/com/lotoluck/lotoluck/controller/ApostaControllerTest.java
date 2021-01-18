@@ -5,7 +5,7 @@ import br.com.lotoluck.lotoluck.model.Aposta;
 import br.com.lotoluck.lotoluck.model.Apostador;
 import br.com.lotoluck.lotoluck.repository.ApostaRepository;
 import br.com.lotoluck.lotoluck.repository.ApostadorRepository;
-import br.com.lotoluck.lotoluck.services.NumerosDeAposta;
+import br.com.lotoluck.lotoluck.services.NumerosDeApostaService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ public class ApostaControllerTest {
                 .thenReturn(Optional.of(new Apostador(1L, "email@email.com", "Apostador 1", "406.018.200-10")));
 
         Aposta aposta = new Aposta();
-        when(this.apostaRepository.save(aposta)).thenReturn(new Aposta(1L, apostador, NumerosDeAposta.apostar(60, 6)));
+        when(this.apostaRepository.save(aposta)).thenReturn(new Aposta(1L, apostador, NumerosDeApostaService.apostar(60, 6)));
 
         ApostaForm apostaForm = new ApostaForm("email@email.com");
 

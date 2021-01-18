@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Random;
 
 @Data
-public class NumerosDeAposta {
+public class NumerosDeApostaService {
 
     List<Integer> numerosdeAposta = new ArrayList<>();
 
     public static String apostar(int numerosDisponiveisParaAposta, int numerosApostados){
-        NumerosDeAposta nums = new NumerosDeAposta();
+        NumerosDeApostaService nums = new NumerosDeApostaService();
         nums.gerarAposta(numerosDisponiveisParaAposta, numerosApostados);
         return nums.numerosApostados();
     }
 
 
-    public boolean add(int i) {
+    public boolean addNumerosNaLista(int i) {
         if (i == 0 || numerosDuplicados(i)) {
             return false;
         }
@@ -31,7 +31,7 @@ public class NumerosDeAposta {
 
         while (this.numerosdeAposta.size() < numerosApostados) {
             int numero = random.nextInt(numerosDisponiveisParaAposta);
-            add(numero);
+            addNumerosNaLista(numero);
         }
     }
 

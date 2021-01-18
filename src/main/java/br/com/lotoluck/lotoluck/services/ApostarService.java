@@ -15,7 +15,7 @@ public class ApostarService {
         aposta.setApostador(apostador);
 
         while(apostar){
-            nums = NumerosDeAposta.apostar(60, 6);
+            nums = NumerosDeApostaService.apostar(60, 6);
             aposta.setNumerosApostados(nums);
             apostar = aposta.apostaNaoEhPossivel(apostaRepo);
         }

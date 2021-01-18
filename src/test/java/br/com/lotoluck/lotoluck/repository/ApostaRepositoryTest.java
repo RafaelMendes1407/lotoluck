@@ -2,7 +2,7 @@ package br.com.lotoluck.lotoluck.repository;
 
 import br.com.lotoluck.lotoluck.model.Aposta;
 import br.com.lotoluck.lotoluck.model.Apostador;
-import br.com.lotoluck.lotoluck.services.NumerosDeAposta;
+import br.com.lotoluck.lotoluck.services.NumerosDeApostaService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,7 @@ class ApostaRepositoryTest {
 
     @Test
     public void salvaApostaQuandoBemSucedido() {
-        String nums = NumerosDeAposta.apostar(60, 6);
+        String nums = NumerosDeApostaService.apostar(60, 6);
         Aposta aposta = new Aposta(apostador, nums);
         Aposta apostaSalva = this.apostaRepository.save(aposta);
         Assertions.assertThat(apostaSalva).isNotNull();
