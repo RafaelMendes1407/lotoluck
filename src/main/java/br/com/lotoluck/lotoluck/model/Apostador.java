@@ -22,7 +22,7 @@ public class Apostador {
     private Long id;
 
     @Email(message = "{email.not.valid}")
-    @NotBlank(message ="{email.not.blank}")
+    @NotBlank(message = "{email.not.blank}")
     @Size(max = 150)
     @Column(unique = true)
     private String email;
@@ -34,8 +34,9 @@ public class Apostador {
     @CPF
     private String cpf;
 
-    @AssertFalse
-    private Boolean validado;
+    private Boolean emailValidado;
+
+    private Boolean cpfValidado;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "apostador")
     private List<Aposta> apostas;

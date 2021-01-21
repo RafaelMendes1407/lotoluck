@@ -14,7 +14,7 @@ import java.util.Optional;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "apostas")
+@Table(name = "aposta")
 public class Aposta {
 
     @Id
@@ -41,15 +41,5 @@ public class Aposta {
         this.numerosApostados = nums;
         this.date = LocalDateTime.now();
         this.apostador = apostador;
-    }
-
-    public boolean apostaNaoEhPossivel(ApostaRepository repo){
-        Optional<Aposta> aposta = repo.findByNumerosApostados(this.getNumerosApostados());
-        if(aposta.isEmpty()){
-            return false;
-        }
-        Long idApostador = this.apostador.getId();
-        Long idAposta = aposta.get().getApostador().getId();
-        return idApostador.equals(idAposta);
     }
 }
